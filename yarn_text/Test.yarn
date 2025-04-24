@@ -1,0 +1,74 @@
+title: Start
+position: -325,-60
+---
+<< declare $characterName = "Unknown One" >>
+<< declare $gaveWater = false >>
+Narrator: Hi, I'm the narrator for this beginner's guide!
+Narrator: I'm talking to you with Yarn Spinner!
+Narrator: What do you think of all this, then?
+    -> It's alright, I guess.
+        Narrator: Well, that's not very nice.
+        Narrator: I'm trying my best here.
+        Narrator: What can I do better?
+        -> More FPS
+           Narrator: You know this is a text based interface, right?
+        -> More RGB
+           Narrator: This is a monochromatic interface
+        -> Microtransactions!
+           Narrator: *shoots self*
+           <<jump Ending1>>
+    -> It's great. I love it.
+        Narrator: Oh, you're too kind.
+        Narrator: I'm just doing my job.
+        Narrator: What's you name?
+        -> I'm Darkhul Karashiya
+           << set $characterName to "Darkhul Karashiya" >>
+           << jump Introduction >>
+        -> < Stay silent. >
+           << jump Introduction >>
+===
+
+title: Introduction
+position: -313,277
+---
+<< if $characterName is "Unknown One">>
+Narrator: Ah, the strong silent type.
+<<endif>> 
+Narrator: Hello, {$characterName}!
+-> You may address me as sir. <<if $characterName is "Darkhul Karashiya">>
+   Narrator: Oh, haha I see; Well in the case...
+   Narrator: Hello, Si-
+   Narrator: Oh, who am I kidding; I'm not calling you "sir"
+   Narrator: I'm "The Narrator", you should be the one showing respect, buddy.
+   -> <Apologize>
+      Narrator: Very well {$characterName}, about time someone showed me some respect around these parts.
+      << jump water >>
+-> < Stay silent. >
+   Narrator: Oh...
+   Narrator: You really are married to this brooding stoic persona aren't you?
+   Narrator: Fine, have it your way.
+   << jump water >>
+===
+
+title: water
+position: 118,263
+---
+Narrator: Fetch me a glass of water from the table behind you, yeah?
+-> < Fetch water >
+   << set $gaveWater to true >>
+   << jump Ending1 >>
+-> Nope, not doing that
+   *The narrator, shocked by your utter lack of respect...*
+   * ... dies *
+   << jump Ending1 >>
+===
+
+title: Ending1
+position: 144,-87
+---
+*The water was poisoned!* << if $gaveWater >>
+* You are enveloped in an unshakeable sensation of ...*
+* ... guilt *
+* The Narrator is dead.
+* ... you killed them. *
+===
